@@ -1,7 +1,7 @@
 ECGALAXY nodejs
 =======================
 
-Ansible role that installs #todo.
+Ansible role that installs Node.js.
 
 Requirements
 ------------
@@ -11,13 +11,12 @@ None.
 Role Variables
 --------------
 
-- `var1`: #todo
-- `var2`: #todo
+See variables in `defaults/main.yml`
 
 Dependencies
 ------------
 
-- `ecgalaxy.common_packages`
+None.
 
 Example Playbook
 ----------------
@@ -35,3 +34,5 @@ Author Information
 ------------------
 
 ECGALAXY team.
+
+note: This role is a fork of https://github.com/geerlingguy/ansible-role-nodejs.

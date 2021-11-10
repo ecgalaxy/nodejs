@@ -1,0 +1,38 @@
+- name: Verify
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Include role defaults vars
+      with_first_found:
+        - "../../defaults/main.yml"
+      include_vars: "{{ item }}"
+    - name: Check nodejs binary file
+      stat:
+        path: /usr/bin/node
+      register: bin
+    - name: Assert that node binary is installed
+      assert:
+        that:
+          - "bin.stat.exists"
+    - name: Check node execution
+      command: node --version
+      register: output
+    - name: Assert node version 
+      assert:
+        that:
+        - "'v{{ nodejs_version.split('.')[0] }}' in output.stdout"
+    - name: Check npm binary file
+      stat:
+        path: /usr/bin/npm
+      register: bin
+    - name: Assert that npm binary is installed
+      assert:
+        that:
+          - "bin.stat.exists"
+    - name: Check npm execution
+      command: npm --version
+      register: output
+    - name: Assert npm return code is 0 
+      assert:
+        that:
+        - output.rc == 0
