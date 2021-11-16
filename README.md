@@ -11,7 +11,8 @@ None.
 Role Variables
 --------------
 
-See variables in `defaults/main.yml`
+
+- `nodejs_version` - Set the version of Node.js to install ("12.x", "13.x", "14.x", "15.x", etc.). Version numbers from Nodesource: https://github.com/nodesource/distributions.
 
 Dependencies
 ------------
@@ -35,4 +36,4 @@ Author Information
 
 ECGALAXY team.
 
-note: This role is a fork of https://github.com/geerlingguy/ansible-role-nodejs.
+note: This role is inspired to https://github.com/geerlingguy/ansible-role-nodejs.
