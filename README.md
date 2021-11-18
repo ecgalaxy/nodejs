@@ -37,6 +37,4 @@ Author Information
 
 ECGALAXY team.
 
-
-
-NOTE: This role is based on original work by [Jeff Geerling.](https://github.com/geerlingguy/ansible-role-nodejs.))
+NOTE: This role is based [on original work by Jeff Geerling.](https://github.com/geerlingguy/ansible-role-nodejs.)
