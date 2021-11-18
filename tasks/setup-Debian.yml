@@ -3,7 +3,6 @@
   apt:
     name:
       - apt-transport-https
-      - gnupg2
     state: present
 
 - name: Add Nodesource apt key.
@@ -19,12 +18,7 @@
   with_items:
     - "deb https://deb.nodesource.com/node_{{ nodejs_version }} {{ ansible_distribution_release }} main"
     - "deb-src https://deb.nodesource.com/node_{{ nodejs_version }} {{ ansible_distribution_release }} main"
-  register: node_repo
-
-- name: Update apt cache if repo was added.
-  apt: update_cache=yes
-  when: node_repo.changed
-  tags: ['skip_ansible_lint']
+  notify: Update apt cache
 
 - name: Ensure Node.js and npm are installed.
   apt:

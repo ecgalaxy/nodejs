@@ -17,13 +17,14 @@ Role Variables
 Dependencies
 ------------
 
-None.
+- ecgalaxy.common_packages
 
 Example Playbook
 ----------------
 
     - hosts: all
       roles:
+        - ecgalaxy.common_packages
         - ecgalaxy.nodejs
 
 License
@@ -36,4 +37,6 @@ Author Information
 
 ECGALAXY team.
 
-note: This role is inspired to https://github.com/geerlingguy/ansible-role-nodejs.
+
+
+NOTE: This role is based on original work by [Jeff Geerling.](https://github.com/geerlingguy/ansible-role-nodejs.))
