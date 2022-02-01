@@ -13,11 +13,13 @@
   rpm_key:
     key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
     state: present
+  become: true
 
 - name: Add Nodesource repositories for Node.js
   yum:
     name: "https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/{{ rhel_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ rhel_distribution_major_version }}-1.noarch.rpm"
     state: present
+  become: true
 
 - name: Ensure Node.js AppStream module is disabled (CentOS 8+).
   command: yum module disable -y nodejs
@@ -26,9 +28,17 @@
   register: module_disable
   changed_when: "'Nothing to do.' not in module_disable.stdout"
   when: ansible_distribution_major_version|int >= 8
+  become: true
 
 - name: Ensure Node.js and npm are installed.
   yum:
     name: "nodejs-{{ nodejs_version|regex_replace('x', '') }}*"
     state: present
     enablerepo: nodesource
+  become: true
+
+- name: Install yarn
+  community.general.npm:
+    name: yarn
+    global: yes
+  become: true

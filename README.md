@@ -24,13 +24,14 @@ Example Playbook
 
     - hosts: all
       roles:
-        - ecgalaxy.common_packages
         - ecgalaxy.nodejs
 
 License
 -------
 
-EUPL-1.2
+Copyright the European Union 2022.
+
+Licensed under the EUPL-1.2 or later.
 
 Author Information
 ------------------
