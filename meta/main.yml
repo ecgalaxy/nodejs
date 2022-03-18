@@ -1,8 +1,7 @@
 ---
-
 galaxy_info:
   author: ecgalaxy
-  description: Ansible role that installs Node.js.
+  description: Ansible role that installs Node.js
   company: European Commission
   platforms:
     - name: Amazon Linux 2

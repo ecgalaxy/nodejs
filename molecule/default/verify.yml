@@ -5,41 +5,41 @@
     - name: Include role defaults vars
       with_first_found:
         - "../../defaults/main.yml"
-      include_vars: "{{ item }}"
+      ansible.builtin.include_vars: "{{ item }}"
     - name: Check nodejs binary file
-      stat:
+      ansible.builtin.stat:
         path: /usr/bin/node
       register: bin
     - name: Assert that node binary is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - "bin.stat.exists"
     - name: Check node execution
-      command: node --version
+      ansible.builtin.command: node --version
       register: output
-    - name: Assert node version 
-      assert:
+    - name: Assert node version
+      ansible.builtin.assert:
         that:
         - "'v{{ nodejs_version.split('.')[0] }}' in output.stdout"
     - name: Check npm binary file
-      stat:
+      ansible.builtin.stat:
         path: /usr/bin/npm
       register: bin
     - name: Assert that npm binary is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - "bin.stat.exists"
     - name: Check npm execution
-      command: npm --version
+      ansible.builtin.command: npm --version
       register: output
-    - name: Assert npm return code is 0 
-      assert:
+    - name: Assert npm return code is 0
+      ansible.builtin.assert:
         that:
         - output.rc == 0
     - name: Check yarn execution
-      command: yarn --version
+      ansible.builtin.command: yarn --version
       register: output
-    - name: Assert yarn return code is 0 
-      assert:
+    - name: Assert yarn return code is 0
+      ansible.builtin.assert:
         that:
         - output.rc == 0

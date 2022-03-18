@@ -1,28 +1,28 @@
 ---
-- name: Set up the Nodesource RPM directory.
-  set_fact:
+- name: Set up the Nodesource RPM directory
+  ansible.builtin.set_fact:
     nodejs_rhel_rpm_dir: "pub_{{ nodejs_version }}"
     rhel_distribution_major_version: 7
 
-- name: Set up the Nodesource RPM directory.
-  set_fact:
+- name: Set up the Nodesource RPM directory
+  ansible.builtin.set_fact:
     rhel_distribution_major_version: "{{ ansible_distribution_major_version }}"
   when: ansible_distribution_major_version|int >= 8
 
 - name: Import Nodesource RPM key
-  rpm_key:
+  ansible.builtin.rpm_key:
     key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
     state: present
   become: true
 
 - name: Add Nodesource repositories for Node.js
-  yum:
+  ansible.builtin.yum:
     name: "https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/{{ rhel_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ rhel_distribution_major_version }}-1.noarch.rpm"
     state: present
   become: true
 
-- name: Ensure Node.js AppStream module is disabled (CentOS 8+).
-  command: yum module disable -y nodejs
+- name: Ensure Node.js AppStream module is disabled (CentOS 8+)
+  ansible.builtin.command: yum module disable -y nodejs
   args:
     warn: false
   register: module_disable
@@ -30,8 +30,8 @@
   when: ansible_distribution_major_version|int >= 8
   become: true
 
-- name: Ensure Node.js and npm are installed.
-  yum:
+- name: Ensure Node.js and npm are installed
+  ansible.builtin.yum:
     name: "nodejs-{{ nodejs_version|regex_replace('x', '') }}*"
     state: present
     enablerepo: nodesource
