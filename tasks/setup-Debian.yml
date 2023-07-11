@@ -26,6 +26,7 @@
   ansible.builtin.apt:
     name: "nodejs={{ nodejs_version | regex_replace('x', '') }}*"
     state: present
+    allow_downgrades: true
   become: true
 
 - name: Install yarn

@@ -1,0 +1,7 @@
+[nodesource-{{ nodejs_version }}]
+name=Node.js {{ nodejs_version }} Packages for Enterprise Linux {{ rhel_distribution_major_version }} - $basearch
+baseurl=https://rpm.nodesource.com/pub_{{ nodejs_version }}/el/{{ rhel_distribution_major_version }}/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL

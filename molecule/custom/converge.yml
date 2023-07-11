@@ -1,0 +1,20 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: Include nodejs role
+      ansible.builtin.include_role:
+        name: nodejs
+      vars:
+        nodejs_version: "{{ version }}"
+      loop:
+        - "14.x"
+        - "16.x"
+        - "14.x"
+      loop_control:
+        loop_var: version
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') }}"
