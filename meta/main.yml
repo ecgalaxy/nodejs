@@ -22,5 +22,4 @@ galaxy_info:
     - nodejs
     - npm
     - yarn
-dependencies:
-  - role: ecgalaxy.common_packages
+dependencies: []

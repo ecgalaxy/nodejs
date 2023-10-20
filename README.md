@@ -1,30 +1,43 @@
 ECGALAXY nodejs
-=======================
+===============
 
 Ansible role that installs Node.js.
 
 Requirements
 ------------
 
-None.
+- On Ubuntu, the `gpg-agent` command, which can be provided by `ecgalaxy.common_packages`.
 
 Role Variables
 --------------
 
+- `nodejs_version`: Sets the Node.js version to install ("12.x", "13.x", "14.x", "15.x", etc.).
 
-- `nodejs_version` - Set the version of Node.js to install ("12.x", "13.x", "14.x", "15.x", etc.). Version numbers from Nodesource: https://github.com/nodesource/distributions.
+Version numbers from Nodesource: https://github.com/nodesource/distributions.
 
 Dependencies
 ------------
 
-- ecgalaxy.common_packages
+- optional: ecgalaxy.bootstrap
+- optional: ecgalaxy.common_packages
 
 Example Playbook
 ----------------
 
     - hosts: all
       roles:
+        - ecgalaxy.bootstrap
+        - ecgalaxy.common_packages
         - ecgalaxy.nodejs
+
+One-liner
+---------
+
+    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs
+
+See [ansible-role](https://code.europa.eu/-/snippets/1) for instructions.
+
+Please verify the script integrity first.
 
 License
 -------
