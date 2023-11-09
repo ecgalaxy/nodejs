@@ -1,8 +1,20 @@
 ---
-- name: Setup
-  ansible.builtin.import_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Compute nodejs_version_major
+  ansible.builtin.set_fact:
+    nodejs_version_major: "{{ nodejs_version | regex_replace('.x', '') }}"
 
 - name: Setup
-  ansible.builtin.import_tasks: setup-Debian.yml
+  ansible.builtin.include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat' and nodejs_version_major | int < 17
+
+- name: Setup
+  ansible.builtin.include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon' and nodejs_version_major | int > 16
+
+- name: Setup
+  ansible.builtin.include_tasks: setup-Amazon.yml
+  when: ansible_distribution == 'Amazon' and nodejs_version_major | int > 16
+
+- name: Setup
+  ansible.builtin.include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'

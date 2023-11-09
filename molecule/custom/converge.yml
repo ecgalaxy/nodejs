@@ -9,9 +9,9 @@
       vars:
         nodejs_version: "{{ version }}"
       loop:
-        - "14.x"
-        - "16.x"
-        - "14.x"
+        - "18.x"
+        - "20.x"
+        - "18.x"
       loop_control:
         loop_var: version
   environment:

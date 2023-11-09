@@ -11,9 +11,14 @@ Requirements
 Role Variables
 --------------
 
-- `nodejs_version`: Sets the Node.js version to install ("12.x", "13.x", "14.x", "15.x", etc.).
+- `nodejs_version`: Sets the Node.js version to install ("16.x", "18.x", "20.x", etc).
+
+The default version is 20.x.
 
 Version numbers from Nodesource: https://github.com/nodesource/distributions.
+
+Node.js 18 and 20 on Amazon Linux 2 are supported, using pre-built binaries from:
+https://code.europa.eu/ecgalaxy/amazonlinux2-nodejs
 
 Dependencies
 ------------

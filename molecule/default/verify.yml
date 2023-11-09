@@ -6,14 +6,6 @@
       with_first_found:
         - "../../defaults/main.yml"
       ansible.builtin.include_vars: "{{ item }}"
-    - name: Check nodejs binary file
-      ansible.builtin.stat:
-        path: /usr/bin/node
-      register: bin
-    - name: Assert that node binary is installed
-      ansible.builtin.assert:
-        that:
-          - "bin.stat.exists"
     - name: Check node execution
       ansible.builtin.command: node --version
       register: output
@@ -21,14 +13,6 @@
       ansible.builtin.assert:
         that:
         - "'v{{ nodejs_version.split('.')[0] }}' in output.stdout"
-    - name: Check npm binary file
-      ansible.builtin.stat:
-        path: /usr/bin/npm
-      register: bin
-    - name: Assert that npm binary is installed
-      ansible.builtin.assert:
-        that:
-          - "bin.stat.exists"
     - name: Check npm execution
       ansible.builtin.command: npm --version
       register: output
