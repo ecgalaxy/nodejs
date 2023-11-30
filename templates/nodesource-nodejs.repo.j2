@@ -1,0 +1,7 @@
+[nodesource-nodejs-{{ nodejs_version }}]
+name=Node.js {{ nodejs_version }} Packages for Linux RPM based distros
+baseurl=https://rpm.nodesource.com/pub_{{ nodejs_version }}/nodistro/nodejs/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL

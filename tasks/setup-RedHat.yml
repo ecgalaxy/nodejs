@@ -1,29 +1,30 @@
 ---
-- name: Set up the Nodesource RPM directory
+- name: Set up the NodeSource RPM directory
   ansible.builtin.set_fact:
     rhel_distribution_major_version: 7
 
-- name: Set up the Nodesource RPM directory
+- name: Set up the NodeSource RPM directory
   ansible.builtin.set_fact:
     rhel_distribution_major_version: "{{ ansible_distribution_major_version }}"
   when: ansible_distribution_major_version | int >= 8
 
-- name: Import Nodesource RPM key
+- name: Import NodeSource RPM key
   ansible.builtin.rpm_key:
-    key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
+    key: https://rpm.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
   become: true
 
-- name: Disable nodesource repository installed by rpm package
-  ansible.builtin.yum:
-    name: nodesource-release
+- name: Remove previous NodeSource repository file
+  ansible.builtin.file:
+    path: "/etc/yum.repos.d/nodesource-{{ nodejs_version }}.repo"
     state: absent
+  notify: Clean yum metadata
   become: true
 
 - name: Add Node.js repository file
   ansible.builtin.template:
-    src: nodesource.repo.j2
-    dest: "/etc/yum.repos.d/nodesource-{{ nodejs_version }}.repo"
+    src: nodesource-nodejs.repo.j2
+    dest: "/etc/yum.repos.d/nodesource-nodejs-{{ nodejs_version }}.repo"
     owner: root
     group: root
     mode: '0644'
@@ -41,7 +42,7 @@
   ansible.builtin.yum:
     name: "nodejs-{{ nodejs_version | regex_replace('x', '') }}*"
     state: present
-    enablerepo: "nodesource-{{ nodejs_version }}"
+    enablerepo: "nodesource-nodejs-{{ nodejs_version }}"
     allow_downgrade: true
   become: true
 
