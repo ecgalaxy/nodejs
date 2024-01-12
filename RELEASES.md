@@ -1,5 +1,9 @@
 # Releases
 
+## 2.1.0
+
+- Node.js 16.x support removed.
+
 ## 2.0.0
 
 - Node.js 20.x set as default version.

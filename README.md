@@ -11,7 +11,7 @@ Requirements
 Role Variables
 --------------
 
-- `nodejs_version`: Sets the Node.js version to install ("16.x", "18.x", "20.x", etc).
+- `nodejs_version`: Sets the Node.js version to install ("18.x", "20.x", etc).
 
 The default version is 20.x.
 

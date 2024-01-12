@@ -8,41 +8,20 @@
     rhel_distribution_major_version: "{{ ansible_distribution_major_version }}"
   when: ansible_distribution_major_version | int >= 8
 
-- name: Import NodeSource RPM key
-  ansible.builtin.rpm_key:
-    key: https://rpm.nodesource.com/gpgkey/nodesource.gpg.key
-    state: present
-  become: true
-
-- name: Remove previous NodeSource repository file
+- name: Remove previous NodeSource repository files
   ansible.builtin.file:
-    path: "/etc/yum.repos.d/nodesource-{{ nodejs_version }}.repo"
+    path: "{{ item }}"
     state: absent
+  loop:
+    - "/etc/yum.repos.d/nodesource-{{ nodejs_version }}.repo"
+    - "/etc/yum.repos.d/nodesource-nodejs-{{ nodejs_version }}.repo"
   notify: Clean yum metadata
-  become: true
-
-- name: Add Node.js repository file
-  ansible.builtin.template:
-    src: nodesource-nodejs.repo.j2
-    dest: "/etc/yum.repos.d/nodesource-nodejs-{{ nodejs_version }}.repo"
-    owner: root
-    group: root
-    mode: '0644'
-  notify: Clean yum metadata
-  become: true
-
-- name: Ensure Node.js AppStream module is disabled (CentOS 8+)
-  ansible.builtin.command: yum module disable -y nodejs # noqa: command-instead-of-module
-  register: module_disable
-  changed_when: "'Nothing to do.' not in module_disable.stdout"
-  when: ansible_distribution_major_version | int >= 8
   become: true
 
 - name: Ensure Node.js and npm are installed
-  ansible.builtin.yum:
-    name: "nodejs-{{ nodejs_version | regex_replace('x', '') }}*"
+  ansible.builtin.dnf:
+    name: "@nodejs:{{ nodejs_version_major }}/common"
     state: present
-    enablerepo: "nodesource-nodejs-{{ nodejs_version }}"
     allow_downgrade: true
   become: true
 

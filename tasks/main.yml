@@ -5,10 +5,6 @@
 
 - name: Setup
   ansible.builtin.include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat' and nodejs_version_major | int < 17
-
-- name: Setup
-  ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon' and nodejs_version_major | int > 16
 
 - name: Setup
