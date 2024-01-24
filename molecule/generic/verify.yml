@@ -1,0 +1,29 @@
+- name: Verify
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Include role defaults vars
+      with_first_found:
+        - "../../defaults/main.yml"
+      ansible.builtin.include_vars: "{{ item }}"
+    - name: Check node execution
+      ansible.builtin.command: node --version
+      register: output
+    - name: Assert node return code is 0
+      ansible.builtin.assert:
+        that:
+        - output.rc == 0
+    - name: Check npm execution
+      ansible.builtin.command: npm --version
+      register: output
+    - name: Assert npm return code is 0
+      ansible.builtin.assert:
+        that:
+        - output.rc == 0
+    - name: Check yarn execution
+      ansible.builtin.command: yarn --version
+      register: output
+    - name: Assert yarn return code is 0
+      ansible.builtin.assert:
+        that:
+        - output.rc == 0

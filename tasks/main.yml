@@ -3,14 +3,18 @@
   ansible.builtin.set_fact:
     nodejs_version_major: "{{ nodejs_version | regex_replace('.x', '') }}"
 
-- name: Setup
+- name: Setup (RedHat)
   ansible.builtin.include_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon' and nodejs_version_major | int > 16
+  when: nodejs_download_url == '' and ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon' and nodejs_version_major | int > 16
 
-- name: Setup
+- name: Setup (Amazon Linux 2)
   ansible.builtin.include_tasks: setup-Amazon.yml
-  when: ansible_distribution == 'Amazon' and nodejs_version_major | int > 16
+  when: nodejs_download_url == '' and ansible_distribution == 'Amazon' and nodejs_version_major | int > 16
 
-- name: Setup
+- name: Setup (Debian)
   ansible.builtin.include_tasks: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+  when: nodejs_download_url == '' and ansible_os_family == 'Debian'
+
+- name: Setup (Generic Linux x64)
+  ansible.builtin.include_tasks: setup-generic.yml
+  when: nodejs_download_url | length > 0 and nodejs_checksum | length > 0 and nodejs_install_path | length > 0 and ansible_distribution != 'Amazon'

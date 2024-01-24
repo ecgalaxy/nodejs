@@ -11,9 +11,16 @@ Requirements
 Role Variables
 --------------
 
-- `nodejs_version`: Sets the Node.js version to install ("18.x", "20.x", etc).
+- `nodejs_version`: Sets the Node.js version to install ("18.x", "20.x", etc),
+using the distribution package manager.
 
 The default version is 20.x.
+
+Optionally, in order to install a specific version from a downloadable archive, set the below variables:
+
+- `nodejs_download_url`: The Node.js archive to download (see https://nodejs.org/dist/)
+- `nodejs_checksum`: The archive checksum
+- `nodejs_install_path`: The path where Node.js will be installed
 
 About Node.js 18.x and 20.x on Amazon Linux 2
 ---------------------------------------------

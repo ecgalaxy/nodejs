@@ -1,5 +1,9 @@
 # Releases
 
+## 2.3.x
+
+- Option to install a specific version from an archive added.
+
 ## 2.2.x
 
 - Node.js 16.x support removed.

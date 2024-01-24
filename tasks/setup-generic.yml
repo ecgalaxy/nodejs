@@ -1,0 +1,101 @@
+---
+- name: Install prerequisites
+  ansible.builtin.package:
+    name: xz
+    state: present
+  become: true
+  when: ansible_os_family == 'RedHat'
+
+- name: Create directory
+  ansible.builtin.file:
+    state: directory
+    owner: root
+    group: root
+    mode: 'u=rwx,go=rx'
+    path: "{{ nodejs_install_path }}"
+  become: true
+
+- name: Download Node.js artifact
+  ansible.builtin.get_url:
+    url: "{{ nodejs_download_url }}"
+    checksum: "{{ nodejs_checksum }}"
+    mode: 'u=rwx,go=rx'
+    dest: /tmp
+  register: downloaded_file
+  changed_when: false
+
+- name: Extract artifact
+  ansible.builtin.unarchive:
+    src: "{{ downloaded_file.dest }}"
+    dest: "{{ nodejs_install_path }}"
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,go=rx"
+    remote_src: yes
+    extra_opts: ["--strip-components=1", "-J"]
+  become: true
+
+- name: Create node symlink
+  ansible.builtin.file:
+    src: "{{ nodejs_install_path }}/bin/node"
+    dest: /usr/local/bin/node
+    owner: "root"
+    group: "root"
+    mode: 'u=rwx,go=rx'
+    state: link
+  become: true
+
+- name: Create npm symlink
+  ansible.builtin.file:
+    src: "{{ nodejs_install_path }}/bin/npm"
+    dest: /usr/local/bin/npm
+    owner: "root"
+    group: "root"
+    mode: 'u=rwx,go=rx'
+    state: link
+  become: true
+
+- name: Create npx symlink
+  ansible.builtin.file:
+    src: "{{ nodejs_install_path }}/bin/npx"
+    dest: /usr/local/bin/npx
+    owner: "root"
+    group: "root"
+    mode: 'u=rwx,go=rx'
+    state: link
+  become: true
+
+- name: Create corepack symlink
+  ansible.builtin.file:
+    src: "{{ nodejs_install_path }}/bin/corepack"
+    dest: /usr/local/bin/corepack
+    owner: "root"
+    group: "root"
+    mode: 'u=rwx,go=rx'
+    state: link
+  become: true
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "{{ downloaded_file.dest }}"
+    state: absent
+  changed_when: false
+
+- name: Install yarn
+  community.general.npm:
+    name: yarn
+    global: true
+    executable: /usr/local/bin/npm
+  environment:
+    PATH: /usr/local/bin:{{ ansible_env.PATH }}
+  become: true
+
+- name: Create yarn symlink
+  ansible.builtin.file:
+    src: "{{ nodejs_install_path }}/bin/yarn"
+    dest: /usr/local/bin/yarn
+    owner: "root"
+    group: "root"
+    mode: 'u=rwx,go=rx'
+    state: link
+  become: true
