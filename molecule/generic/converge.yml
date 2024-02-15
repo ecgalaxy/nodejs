@@ -7,9 +7,9 @@
       ansible.builtin.include_role:
         name: nodejs
       vars:
-        nodejs_download_url: "https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz"
-        nodejs_checksum: "sha256:822780369d0ea309e7d218e41debbd1a03f8cdf354ebf8a4420e89f39cc2e612"
-        nodejs_install_path: "/opt/nodejs/20.11.0"
+        nodejs_download_url: "https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz"
+        nodejs_checksum: "sha256:d8dab549b09672b03356aa2257699f3de3b58c96e74eb26a8b495fbdc9cf6fbe"
+        nodejs_install_path: "/opt/nodejs/20.11.1"
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') }}"
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
