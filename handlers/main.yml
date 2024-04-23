@@ -2,6 +2,7 @@
 - name: Update apt cache
   ansible.builtin.apt:
     update_cache: yes
+  become: true
 
 - name: Clean yum metadata # noqa: no-changed-when
   ansible.builtin.command: yum clean metadata

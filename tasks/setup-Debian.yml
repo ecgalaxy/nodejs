@@ -4,6 +4,7 @@
     name:
       - apt-transport-https
     state: present
+  become: true
 
 - name: Disable previous NodeSource repository
   ansible.builtin.apt_repository:
