@@ -1,5 +1,9 @@
 # Releases
 
+## 2.4.x
+
+- Node.js 22.x support added.
+
 ## 2.3.x
 
 - Option to install a specific version from an archive added.
