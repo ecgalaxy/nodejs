@@ -7,14 +7,14 @@
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "20.16.0"
-    nodejs_checksum: "sha256:c6fa9b14fae46c7673ec320d34dafdc56ba12a404be308315deaa6591d59fae1"
+    nodejs_release: "20.17.0"
+    nodejs_checksum: "sha256:c429bb40507f40e378c2464776edf38a7e376034a47f3ce6ddefdb8979b5bca1"
   when: nodejs_version_major | int == 20
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "22.6.0"
-    nodejs_checksum: "sha256:ac8832bc6d879937b64e201da42f1d68fc67837ff6c359500d599dd95e2c8805"
+    nodejs_release: "22.8.0"
+    nodejs_checksum: "sha256:ccec49af9784707b60af493e99256f312e16a417f6e0bc985c6fc19348802fa9"
   when: nodejs_version_major | int == 22
 
 - name: Set artifact download URL
