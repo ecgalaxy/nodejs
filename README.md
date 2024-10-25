@@ -22,15 +22,15 @@ Optionally, in order to install a specific version from a downloadable archive, 
 - `nodejs_checksum`: The archive checksum
 - `nodejs_install_path`: The path where Node.js will be installed
 
-About Node.js 18.x, 20.x and 22.x on Amazon Linux 2
----------------------------------------------------
+About Node.js 18.x, 20.x, 22.x and 23.x on Amazon Linux 2
+---------------------------------------------------------
 
-Official Node.js 18.x, 20.x and 22.x pre-built binaries cannot be used on Amazon Linux 2,
+Official Node.js 18.x, 20.x, 22.x and 23.x pre-built binaries cannot be used on Amazon Linux 2,
 due to binary incompatibilities (missing glibc symbol versions).
 
 AWS recommends to build those Node.js versions from source, when using Amazon Linux 2 (AL2).
 
-Pre-built Node.js 18x, 20.x and 22.x binaries for Amazon Linux 2 can be found at
+Pre-built Node.js 18x, 20.x, 22.x and 23.x binaries for Amazon Linux 2 can be found at
 https://code.europa.eu/ecgalaxy/amazonlinux2-nodejs/-/packages
 
 They are downloaded by this Ansible role (when executed on AL2),
@@ -43,7 +43,7 @@ You may want to update your `$PATH` as well, pointing to the `/opt/nodejs/<nodej
 Usage with `nvm` has been tested successfully; the command `nvm use system` will correctly point to the "global"
 Node.js version (saved into `/opt/nodejs/<nodejs_version>`).
 
-You can also execute this role to globally install 18.x, 20.x and 22.x, then overwrite the contents of
+You can also execute this role to globally install 18.x, 20.x, 22.x and 23.x then overwrite the contents of
 `~/.nvm/versions/node/v<nodejs_version>` for each, which will allow switching from one version to another
 with `nvm use`.
 
@@ -69,9 +69,9 @@ To globally install the default Node.js version:
 
     bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs
 
-To globally install Node.js 18.x:
+To globally install Node.js 22.x:
 
-    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs --extra-vars '{"nodejs_version":"18.x"}'
+    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs --extra-vars '{"nodejs_version":"22.x"}'
 
 See [ansible-role](https://code.europa.eu/-/snippets/1) for instructions.
 
