@@ -11,8 +11,8 @@ platforms:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
-  - name: ubuntu2004-${CI_JOB_ID:-0}
-    image: code.europa.eu:4567/ecgalaxy/ubuntu2004-ansible:latest
+  - name: rockylinux9-${CI_JOB_ID:-0}
+    image: code.europa.eu:4567/ecgalaxy/rockylinux9-ansible:latest
     pre_build_image: true
     environment:
       http_proxy: "${http_proxy}"
@@ -20,6 +20,13 @@ platforms:
       no_proxy: "${no_proxy}"
   - name: ubuntu2204-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/ubuntu2204-ansible:latest
+    pre_build_image: true
+    environment:
+      http_proxy: "${http_proxy}"
+      https_proxy: "${https_proxy}"
+      no_proxy: "${no_proxy}"
+  - name: ubuntu2404-${CI_JOB_ID:-0}
+    image: code.europa.eu:4567/ecgalaxy/ubuntu2404-ansible:latest
     pre_build_image: true
     environment:
       http_proxy: "${http_proxy}"

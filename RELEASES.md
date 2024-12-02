@@ -1,5 +1,9 @@
 # Releases
 
+## 2.6.x
+
+- RHEL 9 and Ubuntu 24.04 support added.
+
 ## 2.5.x
 
 - Node.js 23.x support for Amazon Linux 2, Ubuntu 20.04 and 22.04 added.
