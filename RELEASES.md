@@ -1,5 +1,9 @@
 # Releases
 
+## 3.0.x
+
+- Node.js 22.x set as default version.
+
 ## 2.6.x
 
 - RHEL 9 and Ubuntu 24.04 support added.

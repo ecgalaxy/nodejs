@@ -14,13 +14,15 @@ Role Variables
 - `nodejs_version`: Sets the Node.js version to install ("18.x", "20.x", etc),
 using the distribution package manager.
 
-The default version is 20.x.
+The default version is 22.x.
 
 Optionally, in order to install a specific version from a downloadable archive, set the below variables:
 
 - `nodejs_download_url`: The Node.js archive to download (see https://nodejs.org/dist/)
 - `nodejs_checksum`: The archive checksum
 - `nodejs_install_path`: The path where Node.js will be installed
+
+Those variables must be manually set for RHEL 8 and Node.js > 20.x.
 
 About Node.js 18.x, 20.x, 22.x and 23.x on Amazon Linux 2
 ---------------------------------------------------------
@@ -69,9 +71,9 @@ To globally install the default Node.js version:
 
     bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs
 
-To globally install Node.js 22.x:
+To globally install Node.js 23.x:
 
-    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs --extra-vars '{"nodejs_version":"22.x"}'
+    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.nodejs --extra-vars '{"nodejs_version":"23.x"}'
 
 See [ansible-role](https://code.europa.eu/-/snippets/1) for instructions.
 
