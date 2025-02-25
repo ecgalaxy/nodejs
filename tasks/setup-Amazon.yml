@@ -1,20 +1,20 @@
 ---
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "18.20.6"
-    nodejs_checksum: "sha256:1c61179b19004ebca38a661bbd3be622b59887420c23b6dd7e6f48d93391e992"
+    nodejs_release: "18.20.7"
+    nodejs_checksum: "sha256:ef954ff6e8dffd7260e9e96398cb5623f0e3e0b769dee409a3906b557c06a26a"
   when: nodejs_version_major | int == 18
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "20.18.2"
-    nodejs_checksum: "sha256:1be0ffb7954efbd4c5e6d1a8d2df95a40fc98f2d3053c86e0db16c2c62068ef0"
+    nodejs_release: "20.18.3"
+    nodejs_checksum: "sha256:815420fc1157543f32bb6ddf0e65e0c8796d04358bd493be733da38353e13691"
   when: nodejs_version_major | int == 20
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "22.13.1"
-    nodejs_checksum: "sha256:7e54e2d2a642c9d27df8f11649bdd60aae9c3ac4afabdc94753ee4e4cf050306"
+    nodejs_release: "22.14.0"
+    nodejs_checksum: "sha256:00f3430441a85886510f34a0fce5b387a77942978cdd8f2c046cc7799fb2226c"
   when: nodejs_version_major | int == 22
 
 - name: Set Node.js release
