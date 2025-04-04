@@ -1,8 +1,8 @@
 ---
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "18.20.7"
-    nodejs_checksum: "sha256:ef954ff6e8dffd7260e9e96398cb5623f0e3e0b769dee409a3906b557c06a26a"
+    nodejs_release: "18.20.8"
+    nodejs_checksum: "sha256:32ec077b440c1335d3b2b21f75eccdb7ba34f954ba0726dfd4b63bee706e54d0"
   when: nodejs_version_major | int == 18
 
 - name: Set Node.js release
