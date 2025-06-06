@@ -7,14 +7,14 @@
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "20.19.0"
-    nodejs_checksum: "sha256:14e5c5daa2fa8d1ac9275130e3f4aeaa5f44d939af9b699865db82ae5239d324"
+    nodejs_release: "20.19.2"
+    nodejs_checksum: "sha256:89faaf2341b256d1988fc4a43fb0341e80384ace067c4fe20e8a88c814042229"
   when: nodejs_version_major | int == 20
 
 - name: Set Node.js release
   ansible.builtin.set_fact:
-    nodejs_release: "22.14.0"
-    nodejs_checksum: "sha256:00f3430441a85886510f34a0fce5b387a77942978cdd8f2c046cc7799fb2226c"
+    nodejs_release: "22.16.0"
+    nodejs_checksum: "sha256:e0fbf734def4459768055395c189157042f4ce0cb5e038b2ab679ca8b26d6b5f"
   when: nodejs_version_major | int == 22
 
 - name: Set Node.js release
